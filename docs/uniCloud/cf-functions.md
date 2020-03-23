@@ -51,7 +51,7 @@ exports.main = async (event, context) => {
 |files						|Array&lt;ReadStream&#124;Buffer&#124;String&gt; &#124; Object &#124; ReadStream &#124; Buffer &#124; String| -				|-			|上传的文件，设置后将会使用 multipart/form-data 格式。如果未设置method，将会自动将method设置为POST																													|
 |contentType			|String																																																			| -				|-			|上传数据的格式，设为`json`会自动在`header`内设置`Content-Type: application/json`																																						|
 |nestedQuerystring|Boolean																																																		| -				|-			|转换data为queryString时默认不支持嵌套Object，此选项设置为true则支持转换嵌套Object																																					|
-|dataType					|String																																																			| -				|-			|返回的数据格式																																																																							|
+|dataType					|String																																																			| -				|-			|返回的数据格式，可选值为 'json'（返回数据转为JSON），'text'（返回数据转为字符串）， ''（返回数据不做处理，默认值）																																																																							|
 |headers					|Object																																																			| -				|-			|请求头																																																																											|
 |timeout					|Number &#124; Array																																												| -				|-			|超时时间设置。设置为数组时第一项为请求超时，第二项为返回超时。设置为数字时相当于同时设置请求超时和返回超时，即`timeout:3000`效果等于`timeouut:[3000,3000]`	|
 
@@ -190,7 +190,6 @@ uniCloud.callFunction({
 
 以如下代码为例，`count`作为全局变量，当多次调用该云函数时，可能会出现变量累加的情况（实例未复用时，每次返回0，若实例被复用，则可能返回1、2、3等各种意外情况）
 
-**云函数中使用的时区是 `UTC+0`，而不是 `UTC+8`，在云函数中使用时间时需特别注意。**
 
 ```javascript
 let count = 0;
@@ -201,6 +200,11 @@ module.exports = async (event) => {
   //若实例被复用，则可能返回1、2、3等各种意外情况
 }
 ```
+
+**Tips**
+
+- 云函数中使用的时区是 `UTC+0`，而不是 `UTC+8`，在云函数中使用时间时需特别注意。
+- 使用阿里云作为服务商时，暂时无法使用相对路径读取文件，如：`fs.readFileSync('./info')`，可以替换为`fs.readFileSync(path.resolve(__dirname,'./info'))`
 
 
 <span id="callbyfunction"></span>

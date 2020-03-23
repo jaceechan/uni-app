@@ -20,7 +20,7 @@ export default function parseBaseComponent (vueComponentOptions, {
   initRelation
 } = {}) {
   let [VueComponent, vueOptions] = initVueComponent(Vue, vueComponentOptions)
-  
+
   const options = {
     multipleSlots: true,
     addGlobalClass: true,
@@ -78,7 +78,7 @@ export default function parseBaseComponent (vueComponentOptions, {
         }
       },
       detached () {
-        this.$vm.$destroy()
+        this.$vm && this.$vm.$destroy()
       }
     },
     pageLifetimes: {

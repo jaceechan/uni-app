@@ -43,10 +43,12 @@
   * [相机组件控制](api/media/camera-context.md)
   * [直播组件控制](api/media/live-player-context.md)
   * [富文本](api/media/editor-context.md)
+  * [音视频合成](api/media/media-container.md)
 * 设备
   * [系统信息](api/system/info.md)
   * [内存](api/system/memory.md)
   * [网络状态](api/system/network.md)
+  * [系统主题](api/system/theme.md)
   * [加速度计](api/system/accelerometer.md)
   * [罗盘](api/system/compass.md)
   * [陀螺仪](api/system/gyroscope.md)
